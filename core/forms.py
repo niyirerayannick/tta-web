@@ -7,7 +7,7 @@ class ContactForm(forms.Form):
         widget=forms.TextInput(
             attrs={
                 "class": "form-input",
-                "placeholder": "Full name",
+                "placeholder": "Full Name",
                 "autocomplete": "name",
             }
         ),
@@ -16,7 +16,7 @@ class ContactForm(forms.Form):
         widget=forms.EmailInput(
             attrs={
                 "class": "form-input",
-                "placeholder": "Email address",
+                "placeholder": "Email Address",
                 "autocomplete": "email",
             }
         ),
@@ -45,7 +45,7 @@ class ContactForm(forms.Form):
         widget=forms.Textarea(
             attrs={
                 "class": "form-input form-textarea",
-                "placeholder": "Tell us how we can help",
+                "placeholder": "Your Message",
                 "rows": 5,
             }
         ),

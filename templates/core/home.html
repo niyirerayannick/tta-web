@@ -101,7 +101,7 @@
 <section id="contact" class="section-pad contact-section">
     <div class="mx-auto max-w-7xl px-5 lg:px-8">
         <div class="grid gap-8 lg:grid-cols-[0.82fr_1.18fr]">
-             <div class="office-directory reveal">
+            <div class="office-directory reveal">
                 <h3>TransTrade Africa (TTA)</h3>
                 <div class="office-grid">
                     {% for office in offices %}
@@ -117,47 +117,32 @@
                     {% endfor %}
                 </div>
             </div>
-
-            <div class="contact-stack">
-                <form class="contact-form reveal" method="post" action="#contact">
-                    {% csrf_token %}
-                    <div class="form-heading">
-                        <span>Send an inquiry</span>
-                        <p>Share your details and our team will respond directly.</p>
-                    </div>
-                    <div class="form-fields">
-                        <label class="form-field">
-                            <span>Name</span>
-                            {{ contact_form.name }}
-                            {{ contact_form.name.errors }}
-                        </label>
-                        <label class="form-field">
-                            <span>Email</span>
-                            {{ contact_form.email }}
-                            {{ contact_form.email.errors }}
-                        </label>
-                        <label class="form-field">
-                            <span>Phone</span>
-                            {{ contact_form.phone }}
-                            {{ contact_form.phone.errors }}
-                        </label>
-                        <label class="form-field">
-                            <span>Subject</span>
-                            {{ contact_form.subject }}
-                            {{ contact_form.subject.errors }}
-                        </label>
-                        <label class="form-field form-field-full">
-                            <span>Message</span>
-                            {{ contact_form.message }}
-                            {{ contact_form.message.errors }}
-                        </label>
-                    </div>
-                    <div class="form-footer">
-                        <p>Your inquiry will be sent directly to info@transtradeafrica.rw.</p>
-                        <button class="form-submit" type="submit">Send Message</button>
-                    </div>
-                </form>
-            </div>
+            <form class="contact-form contact-form-wide reveal" method="post" action="#contact">
+                {% csrf_token %}
+                <div class="form-fields">
+                    <label class="form-field">
+                        <span class="sr-only">Full Name</span>
+                        {{ contact_form.name }}
+                        {{ contact_form.name.errors }}
+                    </label>
+                    <label class="form-field">
+                        <span class="sr-only">Email Address</span>
+                        {{ contact_form.email }}
+                        {{ contact_form.email.errors }}
+                    </label>
+                    <label class="form-field form-field-full">
+                        <span class="sr-only">Subject</span>
+                        {{ contact_form.subject }}
+                        {{ contact_form.subject.errors }}
+                    </label>
+                    <label class="form-field form-field-full">
+                        <span class="sr-only">Your Message</span>
+                        {{ contact_form.message }}
+                        {{ contact_form.message.errors }}
+                    </label>
+                </div>
+                <button class="form-submit" type="submit">Send Message</button>
+            </form>
         </div>
     </div>
 </section>
