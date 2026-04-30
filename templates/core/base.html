@@ -1,0 +1,82 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TRANSTRADE AFRICA is a private commodity trading company serving the African continent and beyond.">
+    <title>{% block title %}TRANSTRADE AFRICA | Transparency and Innovation{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: "#030711",
+                        ink: "#0b1220",
+                        gold: "#0060ff",
+                        champagne: "#dbeafe",
+                    },
+                    fontFamily: {
+                        sans: ["Tahoma", "Arial", "sans-serif"],
+                        display: ["Tahoma", "Arial", "sans-serif"],
+                    },
+                },
+            },
+        };
+    </script>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body class="bg-white text-slate-800 antialiased">
+    <header class="site-header" id="site-header">
+        <nav class="nav-shell mx-auto flex max-w-7xl items-center justify-between" aria-label="Main navigation">
+            <a href="#home" class="flex items-center gap-3" aria-label="TRANSTRADE AFRICA home">
+                <span class="brand-logo">
+                    <img src="{% static 'img/Logo TTA.png' %}" alt="TRANSTRADE AFRICA logo">
+                </span>
+            </a>
+
+            <button class="nav-toggle lg:hidden" type="button" aria-controls="mobile-menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span class="sr-only">Open menu</span>
+            </button>
+
+            <div class="hidden items-center gap-8 lg:flex">
+                <a class="nav-link" href="#home">Home</a>
+                <a class="nav-link" href="#why-tta">Why TTA</a>
+                <a class="nav-link" href="#partners">Clients | Partners</a>
+                <a class="nav-link" href="#contact">Contact Us</a>
+            </div>
+
+            <a href="#contact" class="nav-cta hidden lg:inline-flex">Let's Talk</a>
+        </nav>
+
+        <div class="mobile-menu lg:hidden" id="mobile-menu">
+            <a href="#home">Home</a>
+            <a href="#why-tta">Why TTA</a>
+            <a href="#partners">Clients | Partners</a>
+            <a href="#contact">Contact Us</a>
+            <a href="#contact" class="mobile-cta">Let's Talk</a>
+        </div>
+    </header>
+
+    <main>
+        {% if messages %}
+            <div class="site-messages">
+                {% for message in messages %}
+                    <div class="site-message {{ message.tags }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="bg-navy px-5 py-8 text-center text-sm text-slate-300">
+        <p>&copy; TransTrade Africa 2026. All Rights Reserved.</p>
+    </footer>
+
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>

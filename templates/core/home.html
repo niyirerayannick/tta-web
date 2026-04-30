@@ -1,0 +1,164 @@
+{% extends "core/base.html" %}
+{% load static %}
+
+{% block content %}
+<section id="home" class="hero-section relative flex min-h-screen items-center overflow-hidden">
+    <div class="hero-overlay"></div>
+    <div class="hero-content relative z-10 mx-auto flex w-full items-center justify-center px-5 lg:px-8">
+        <div class="hero-copy hero-animated mx-auto max-w-4xl text-center">
+          <h1 class="hero-title font-display text-5xl font-bold leading-[0.95] text-white sm:text-6xl lg:text-8xl">
+                TRANSTRADE AFRICA
+            </h1>
+            {% comment %} <p class="mt-7 text-2xl font-semibold text-gold sm:text-3xl">Transparency and Innovation</p> {% endcomment %}
+            <p class="hero-lead mx-auto mt-8 max-w-2xl text-lg leading-8 text-slate-100">
+                TTA is a leading private commodity trading company serving the African continent and beyond.
+            </p>
+            <div class="hero-actions mt-10 flex flex-col justify-center gap-4 sm:flex-row">
+                <a href="#why-tta" class="btn-primary">Explore Why TTA</a>
+                <a href="#contact" class="btn-secondary">Contact Us</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="overview-showcase">
+    <div class="overview-showcase-overlay"></div>
+    <div class="overview-showcase-content mx-auto max-w-7xl px-5 lg:px-8">
+        <div class="overview-statement reveal">
+            <p>
+                TTA is a leading private commodity trading company serving the African continent and beyond.
+            </p>
+        </div>
+
+        <div class="overview-pillars">
+            <article class="reveal" style="--delay: 100ms">
+                <h2>Vision</h2>
+                <p>To be a global leader in connecting people with their essential needs through responsible trading.</p>
+            </article>
+            <article class="reveal" style="--delay: 200ms">
+                <h2>Mission</h2>
+                <p>Moving quality and affordable goods from their points of origin to points of need to create thriving communities.</p>
+            </article>
+        </div>
+
+        <p class="overview-values reveal" style="--delay: 300ms">
+            <strong>Value :</strong> Integrity, Ownership, Teamwork, Community Impact and Innovation.
+        </p>
+    </div>
+</section>
+
+<section id="why-tta" class="section-pad trade-band text-white">
+    <div class="mx-auto max-w-7xl px-5 lg:px-8">
+        <div class="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+            <div class="reveal">
+                <p class="eyebrow text-gold">Why TTA</p>
+                <h2 class="section-title why-title text-white">Premium access to trusted commodities and global supply.</h2>
+                <p class="mt-6 text-lg leading-8 text-slate-200">
+                    We trade a vast range of commodities in agriculture, oil and petroleum, metals & minerals. TTA works in partnership with a large global network of reputable suppliers.
+                </p>
+            </div>
+
+            <div class="space-y-5 reveal" style="--delay: 120ms">
+                <p class="leading-8 text-slate-200">
+                    As a global trading company, TTA selects the finest products available and follows up on all aspects of production, consistently ensuring high quality and reliability.
+                </p>
+                <p class="leading-8 text-slate-200">
+                    We focus on putting our customers first, and emphasize industry best practices and technologies. TTA takes pride in creating long-term value for clients by prioritizing their interests efficiently and responsibly.
+                </p>
+            </div>
+        </div>
+
+        <div class="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {% for activity in activities %}
+                <article class="activity-card reveal" style="--delay: {{ forloop.counter0 }}00ms">
+                    <span>0{{ forloop.counter }}</span>
+                    <h3>{{ activity }}</h3>
+                </article>
+            {% endfor %}
+        </div>
+
+        <div class="team-panel reveal">
+            <p>We employ a strong team made up of global professionals with long-standing experience in Commodity Trading and Distribution.</p>
+        </div>
+    </div>
+</section>
+
+<section id="partners" class="section-pad bg-slate-50">
+    <div class="mx-auto max-w-7xl px-5 lg:px-8">
+        <div class="mx-auto max-w-3xl text-center reveal">
+            <p class="eyebrow">Clients | Partners</p>
+            <h2 class="section-title">Trusted partnerships. Stronger trade.</h2>
+            <p class="mt-6 text-lg leading-8 text-slate-600">
+                We connect reliable suppliers, buyers, and logistics partners to deliver quality commodities with speed, care, and confidence.
+            </p>
+        </div>
+        <div class="partners-photo reveal">
+            <img src="{% static 'img/client.avif' %}" alt="TRANSTRADE AFRICA clients and partners">
+        </div>
+    </div>
+</section>
+
+<section id="contact" class="section-pad contact-section">
+    <div class="mx-auto max-w-7xl px-5 lg:px-8">
+        <div class="grid gap-8 lg:grid-cols-[0.82fr_1.18fr]">
+             <div class="office-directory reveal">
+                <h3>TransTrade Africa (TTA)</h3>
+                <div class="office-grid">
+                    {% for office in offices %}
+                        <article class="office-card">
+                            <h4>{{ office.country }}</h4>
+                            <p>{{ office.address }}</p>
+                            <div class="office-phones">
+                                {% for phone in office.phones %}
+                                    <a href="tel:{{ phone|cut:' ' }}">{{ phone }}</a>{% if not forloop.last %}<span>|</span>{% endif %}
+                                {% endfor %}
+                            </div>
+                        </article>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="contact-stack">
+                <form class="contact-form reveal" method="post" action="#contact">
+                    {% csrf_token %}
+                    <div class="form-heading">
+                        <span>Send an inquiry</span>
+                        <p>Share your details and our team will respond directly.</p>
+                    </div>
+                    <div class="form-fields">
+                        <label class="form-field">
+                            <span>Name</span>
+                            {{ contact_form.name }}
+                            {{ contact_form.name.errors }}
+                        </label>
+                        <label class="form-field">
+                            <span>Email</span>
+                            {{ contact_form.email }}
+                            {{ contact_form.email.errors }}
+                        </label>
+                        <label class="form-field">
+                            <span>Phone</span>
+                            {{ contact_form.phone }}
+                            {{ contact_form.phone.errors }}
+                        </label>
+                        <label class="form-field">
+                            <span>Subject</span>
+                            {{ contact_form.subject }}
+                            {{ contact_form.subject.errors }}
+                        </label>
+                        <label class="form-field form-field-full">
+                            <span>Message</span>
+                            {{ contact_form.message }}
+                            {{ contact_form.message.errors }}
+                        </label>
+                    </div>
+                    <div class="form-footer">
+                        <p>Your inquiry will be sent directly to info@transtradeafrica.rw.</p>
+                        <button class="form-submit" type="submit">Send Message</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
